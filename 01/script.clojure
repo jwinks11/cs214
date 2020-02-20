@@ -1,0 +1,107 @@
+Script started on 2020-02-12 14:40:17-0500
+]0;jw63@gold23: ~/214/projects/01/clojure[01;32mjw63@gold23[00m:[01;34m~/214/projects/01/clojure[00m$ cat src/rectangle_area.clj
+;;;; rectangle_area.clj calculates the area of a rectangle.
+;;;;
+;;;; Input: The length and width of a rectangle.
+;;;; Output: The area of that rectangle.
+;;;;
+;;;; Usage: clojure -m rectangle_area
+;;;;
+;;;; Begun by: Prof. Adams, for CS 214 at Calvin College.
+;;;; Completed by: Jonathan Winkle
+;;;; Date: 2/12/2020
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns rectangle_area) ; namespace function names the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Function rectangleArea() computes the area of a rectangle.
+;;; Receive: itsLength, itsWidth, two positive numbers.
+;;; Precondition: itsLength and itsWidth >= 0.0.
+;;; Return: the area of the corresponding rectangle.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn rectangleArea [itsLength itsWidth]
+  (* itsLength itsWidth )  ; return l*w
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Function -main is where execution begins
+;;; Input: the length and width of a rectangle.
+;;; Output: the area of that rectangle.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn -main []
+  (println "\nTo compute the area of a rectangle,")
+  (print   " enter its length and width as floats: ") (flush)
+  (let
+    [ length (read) 
+    width (read) ]
+    (assert (>= length 0) "-main: length must be positive")
+    (assert (>= width 0) "-main: width must be positive")
+
+    (printf "\nThe area is %f\n\n" (rectangleArea length width))
+
+    (print "\nThe area is ")
+    (print (rectangleArea length width))
+    (print "\n\n")
+
+    (printf "\nThe area is %.15f\n\n" (rectangleArea length width))
+  )
+)  ]0;jw63@gold23: ~/214/projects/01/clojure[01;32mjw63@gold23[00m:[01;34m~/214/projects/01/clojure[00m$ clojure -m rectangle_area
+
+To compute the area of a rectangle,
+ enter its length and width as floats: 1.0
+5.0
+
+The area is 5.000000
+
+
+The area is 5.0
+
+
+The area is 5.000000000000000
+
+]0;jw63@gold23: ~/214/projects/01/clojure[01;32mjw63@gold23[00m:[01;34m~/214/projects/01/clojure[00m$ clojure -m rectangle_area
+
+To compute the area of a rectangle,
+ enter its length and width as floats: 2.0
+4.0
+
+The area is 8.000000
+
+
+The area is 8.0
+
+
+The area is 8.000000000000000
+
+]0;jw63@gold23: ~/214/projects/01/clojure[01;32mjw63@gold23[00m:[01;34m~/214/projects/01/clojure[00m$ clojure -m rectangle_area
+
+To compute the area of a rectangle,
+ enter its length and width as floats: 3.5
+3.5
+
+The area is 12.250000
+
+
+The area is 12.25
+
+
+The area is 12.250000000000000
+
+]0;jw63@gold23: ~/214/projects/01/clojure[01;32mjw63@gold23[00m:[01;34m~/214/projects/01/clojure[00m$ clojure -m rectangle_area
+
+To compute the area of a rectangle,
+ enter its length and width as floats: 10.0
+12.0
+
+The area is 120.000000
+
+
+The area is 120.0
+
+
+The area is 120.000000000000000
+
+]0;jw63@gold23: ~/214/projects/01/clojure[01;32mjw63@gold23[00m:[01;34m~/214/projects/01/clojure[00m$ exit
+
+Script done on 2020-02-12 14:41:46-0500
