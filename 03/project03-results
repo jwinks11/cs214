@@ -1,0 +1,293 @@
+Script started on 2020-02-26 12:59:23-0500
+]0;jw63@gold21: ~/214/projects/03/java[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/java[00m$ cat LetterGrades.J java
+/* LetterGrades.java is a driver for function letterGrade().
+ *
+ * CS 214
+ * Jonathan Winkle
+ * February 2020
+ ****************************************************************/
+import java.util.Scanner;
+
+public class LetterGrades {
+
+   public static void main(String[] args) {
+      Scanner keyboard = new Scanner(System.in);
+      System.out.println("\nEnter your percentage grade (0-100): "); // prompt
+
+      int grade = (keyboard.nextInt());      // read year
+      System.out.println(letterGrade(grade)); // display its code
+   }
+
+   /***************************************************************
+    * letterGrade() converts a percentage into its letter grade.
+    *
+    * Receive: grade, an int.
+    * PRE: grade is an int.
+    * Return: the string of the corresponding letter grade.
+    */
+
+    public static String letterGrade(int grade)
+    {
+        switch (grade / 10)
+        {
+            case 10: case 9:
+              return "A";
+            case 8:
+              return "B";
+            case 7:
+              return "C";
+            case 6:
+              return "D";
+            default:
+              return "F";
+        }
+    }
+
+}]0;jw63@gold21: ~/214/projects/03/java[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/java[00m$ javac LetterGrades.java
+]0;jw63@gold21: ~/214/projects/03/java[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/java[00m$ java LetterGrades
+
+Enter your percentage grade (0-100): 
+50
+F
+]0;jw63@gold21: ~/214/projects/03/java[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/java[00m$ java LetterGrades
+
+Enter your percentage grade (0-100): 
+60
+D
+]0;jw63@gold21: ~/214/projects/03/java[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/java[00m$ java LetterGrades
+
+Enter your percentage grade (0-100): 
+70
+C
+]0;jw63@gold21: ~/214/projects/03/java[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/java[00m$ java LetterGrades
+
+Enter your percentage grade (0-100): 
+80
+B
+]0;jw63@gold21: ~/214/projects/03/java[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/java[00m$ java LetterGrades
+
+Enter your percentage grade (0-100): 
+90
+A
+]0;jw63@gold21: ~/214/projects/03/java[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/java[00m$ java LetterGrades
+
+Enter your percentage grade (0-100): 
+100
+A
+]0;jw63@gold21: ~/214/projects/03/java[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/java[00m$ exit
+
+Script done on 2020-02-26 13:00:19-0500
+Script started on 2020-02-26 13:02:49-0500
+]0;jw63@gold21: ~/214/projects/03/ada[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ada[00m$ cat letter_grades.adb
+-- letter_grades.adb converts percentages to letter grades.
+--
+-- CS 214
+-- Jonathan Winkle
+-- February 2020
+-- Input: grade, an int
+-- Precondition: grade is between 0 and 100
+-- Output: The letter grade appropriate for the percentage.
+----------------------------------------------------
+
+with Ada.Text_IO, Ada.Integer_Text_IO;
+use  Ada.Text_IO, Ada.Integer_Text_IO;
+
+procedure letter_grades is
+
+   percentage : integer := 0;
+
+  function letterGrade(percentage: integer) return character is
+  grade : character;
+  begin
+    case percentage / 10 is
+        when 9 | 10  =>
+            grade := 'A';
+        when 8  =>
+            grade := 'B';
+        when 7  =>
+            grade := 'C';
+        when 6  => 
+            grade := 'D';
+        when 0..5   =>
+            grade := 'F';
+        when others => Put("Error in input value for percentage");
+    end case;
+    return grade;
+  end letterGrade;
+
+
+begin                                          
+   Put("Enter your grade percentage (1-100): ");    -- Prompt for input
+   Get(percentage);                                      -- Input
+   Put( letterGrade(percentage) );                       -- Convert and output
+   New_Line;
+end letter_grades;
+]0;jw63@gold21: ~/214/projects/03/ada[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ada[00m$ gnatmake letter_grades.adb
+x86_64-linux-gnu-gcc-7 -c letter_grades.adb
+x86_64-linux-gnu-gnatbind-7 -x letter_grades.ali
+x86_64-linux-gnu-gnatlink-7 letter_grades.ali
+]0;jw63@gold21: ~/214/projects/03/ada[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ada[00m$ ./letter_grades
+Enter your grade percentage (1-100): 50
+F
+]0;jw63@gold21: ~/214/projects/03/ada[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ada[00m$ ./letter_grades
+Enter your grade percentage (1-100): 60
+D
+]0;jw63@gold21: ~/214/projects/03/ada[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ada[00m$ ./letter_grades
+Enter your grade percentage (1-100): 70
+C
+]0;jw63@gold21: ~/214/projects/03/ada[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ada[00m$ ./letter_grades
+Enter your grade percentage (1-100): 80
+B
+]0;jw63@gold21: ~/214/projects/03/ada[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ada[00m$ ./letter_grades
+Enter your grade percentage (1-100): 90
+A
+]0;jw63@gold21: ~/214/projects/03/ada[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ada[00m$ ./letter_grades
+Enter your grade percentage (1-100): 100
+A
+]0;jw63@gold21: ~/214/projects/03/ada[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ada[00m$ exit
+
+Script done on 2020-02-26 13:03:58-0500
+Script started on 2020-02-26 12:56:10-0500
+]0;jw63@gold21: ~/214/projects/03/clojure[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/clojure[00m$ cat src/letter_grades.clj
+;;;; letter_grades.clj is a driver for function letterGrade.
+;;;;
+;;;; Input: An academic year, one of {freshman, sophomore,
+;;;;                                  junior, senior}.
+;;;; Output: The code for that academic year
+;;;;         (1, 2, 3, 4 for valid entries; 
+;;;;          0 for invalid entries).
+;;;;
+;;;; Usage: clojure -m year_codes
+;;;;
+;;;; Begun by: Prof. Adams, for CS 214 at Calvin College.
+;;;; Completed by:
+;;;; Date:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns letter_grades)                    ; name the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; letterGrade() returns the letter grade for a given percentage.
+;;; Receive: percentage, an integer.
+;;; Precondition: percentage is an integer.
+;;; Return: the character letter grade corresponding to the percentage.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; solution using the cond function
+(defn letterGrade [percentage]
+  (cond
+    (> percentage 89)   'A
+    (> percentage 79)   'B
+    (> percentage 69)   'C
+    (> percentage 59)   'D
+    :else               'F
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Function -main() test-drives our letterGrade() function.
+;;; Input: percentage, an integer.
+;;; Output: the letter grade corresponding to the percentage.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn -main []
+ (print "\nEnter your percentage (0-100): ") (flush)
+ (let
+    [ percentage (Integer/parseInt (read-line)) ]                ; read percentage (integer)
+    (println "letter grade: " (letterGrade percentage) "\n")      ; display its code
+ )
+)
+
+]0;jw63@gold21: ~/214/projects/03/clojure[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/clojure[00m$ clojure -m letter_grades
+
+Enter your percentage (0-100): 50
+letter grade:  F 
+
+]0;jw63@gold21: ~/214/projects/03/clojure[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/clojure[00m$ clojure -m letter_grades
+
+Enter your percentage (0-100): 60
+letter grade:  D 
+
+]0;jw63@gold21: ~/214/projects/03/clojure[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/clojure[00m$ clojure -m letter_grades
+
+Enter your percentage (0-100): 70
+letter grade:  C 
+
+]0;jw63@gold21: ~/214/projects/03/clojure[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/clojure[00m$ clojure -m letter_grades
+
+Enter your percentage (0-100): 80
+letter grade:  B 
+
+]0;jw63@gold21: ~/214/projects/03/clojure[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/clojure[00m$ clojure -m letter_grades
+
+Enter your percentage (0-100): 90
+letter grade:  A 
+
+]0;jw63@gold21: ~/214/projects/03/clojure[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/clojure[00m$ clojure -m letter_grades
+1
+Enter your percentage (0-100): 00
+letter grade:  A 
+
+]0;jw63@gold21: ~/214/projects/03/clojure[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/clojure[00m$ exit
+
+Script done on 2020-02-26 12:57:19-0500
+Script started on 2020-02-26 12:54:26-0500
+]0;jw63@gold21: ~/214/projects/03/ruby[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ruby[00m$ cat letter_ruby.rb       grades.rb
+#! /usr/bin/ruby
+# letter_grades.rb translates a percentage into a letter grade
+# Jonathan Winkle
+# CS 214
+# February, 2020
+################################################################
+
+# Input:  an integer, the percentage grade
+# Precondition: The percentage grade is an integer
+# Output: The corresponding letter grade for the given percentage
+
+def letterGrade(percentage)
+    percentageGrade = percentage/10
+
+    case percentageGrade
+    when 9..10
+       'A'
+    when 8
+       'B'
+    when 7
+       'C'
+    when 6
+       'D'
+    else
+       'F'
+    end
+ 
+ end
+ 
+ if __FILE__ == $0
+    print "Enter the percentage (0-100): "
+    percentage = gets.to_i
+    print "Letter grade is: "
+    puts letterGrade(percentage)
+ end ]0;jw63@gold21: ~/214/projects/03/ruby[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ruby[00m$ ruby letter_grades.rb
+Enter the percentage (0-100): 50
+Letter grade is: F
+]0;jw63@gold21: ~/214/projects/03/ruby[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ruby[00m$ ruby letter_grades.rb
+Enter the percentage (0-100): 60
+Letter grade is: D
+]0;jw63@gold21: ~/214/projects/03/ruby[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ruby[00m$ ruby letter_grades.rb
+Enter the percentage (0-100): 70
+Letter grade is: C
+]0;jw63@gold21: ~/214/projects/03/ruby[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ruby[00m$ ruby letter_grades.rb
+Enter the percentage (0-100): 80
+Letter grade is: B
+]0;jw63@gold21: ~/214/projects/03/ruby[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ruby[00m$ ruby letter_grades.rb90
+[1mTraceback[m (most recent call last):
+ruby: [1mNo such file or directory -- letter_grades.rb90 ([1;4mLoadError[m[1m)
+[m]0;jw63@gold21: ~/214/projects/03/ruby[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ruby[00m$ ruby letter_grades.rb90[K
+Enter the percentage (0-100): 90
+Letter grade is: A
+]0;jw63@gold21: ~/214/projects/03/ruby[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ruby[00m$ ruby letter_grades.rb
+Enter the percentage (0-100): 1` 00
+Letter grade is: A
+]0;jw63@gold21: ~/214/projects/03/ruby[01;32mjw63@gold21[00m:[01;34m~/214/projects/03/ruby[00m$ exit
+
+Script done on 2020-02-26 12:55:31-0500
