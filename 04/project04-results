@@ -1,0 +1,242 @@
+Script started on 2020-03-02 16:07:53-0500
+]0;jw63@maroon12: ~/214/projects/04/ada[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/ada[00m$ cat factorial.adb
+-- factorial.adb computes a value's factorial.
+--
+-- Input: n, a real number.
+-- Output: the value of n!
+--
+-- Author: Jonathan Winkle
+-- 3/2/20
+--------------------------------------------------------------
+
+with Ada.Text_IO, Ada.Integer_Text_IO; 
+use  Ada.Text_IO, Ada.Integer_Text_IO;
+
+procedure factorial is
+
+    fact, n : Integer;
+
+begin                                           -- Prompt for input
+    Put_Line("To calculate the factorial of a number");
+    Put(" enter the number: ");
+    Get(n);
+
+    fact := n;
+    for i in reverse 2..n
+    loop
+        fact := (fact * (i-1));
+    end loop;
+    Put("The factorial of ");
+    Put(n, Width => 1);
+    Put(" is ");
+    Put(fact, Width => 1);
+
+end factorial;]0;jw63@maroon12: ~/214/projects/04/ada[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/ada[00m$ cat factorial.adb[3Pjava Factorialc Factorial.javagnatmake factorial.adb
+x86_64-linux-gnu-gcc-7 -c factorial.adb
+x86_64-linux-gnu-gnatbind-7 -x factorial.ali
+x86_64-linux-gnu-gnatlink-7 factorial.ali
+]0;jw63@maroon12: ~/214/projects/04/ada[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/ada[00m$ gnatmake factorial.adb[5Pcat factorial.adb[3Pjava Factorialc Factorial.javagnatmake factorial.adb[5Pmv script.java ..script script.java[4Pjava Factorialscript script.java[1Pmv script.java ..gnatmake factorial.adb[2Pjavac Factorial.java[6P Factorialcat factorial.adb[5@gnatmake factorial.adb[K./  factorial
+To calculate the factorial of a number
+ enter the number: 1
+The factorial of 1 is 1
+]0;jw63@maroon12: ~/214/projects/04/ada[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/ada[00m$ ./factorial
+To calculate the factorial of a number
+ enter the number: 2
+The factorial of 2 is 2
+]0;jw63@maroon12: ~/214/projects/04/ada[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/ada[00m$ ./factorial
+To calculate the factorial of a number
+ enter the number: 3
+The factorial of 3 is 6
+]0;jw63@maroon12: ~/214/projects/04/ada[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/ada[00m$ ./factorial
+To calculate the factorial of a number
+ enter the number: 4
+The factorial of 4 is 24
+]0;jw63@maroon12: ~/214/projects/04/ada[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/ada[00m$ ./factorial5 
+To calculate the factorial of a number
+ enter the number: 5
+The factorial of 5 is 120
+]0;jw63@maroon12: ~/214/projects/04/ada[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/ada[00m$ ./factorial
+To calculate the factorial of a number
+ enter the number: 6
+The factorial of 6 is 720
+]0;jw63@maroon12: ~/214/projects/04/ada[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/ada[00m$ exit
+
+Script done on 2020-03-02 16:09:06-0500
+Script started on 2020-03-03 14:52:56-0500
+]0;jw63@gold22: ~/214/projects/04/clojure[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/clojure[00m$ cat src/factorial.clj
+;;;; factorial.clj calculates the factorial of an integer.
+;;;;
+;;;; Input: n, an integer.
+;;;; Output: the value of n!
+;;;; Author: Jonathan Winkle
+;;;; Date: 3/3/20
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns factorial)                                 ; name the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; factorial() recursively generates the value of n!.
+;;; Receive: n, an integer
+;;; Output: The value of n!.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; direct-recursive version
+
+(defn factorial [number]
+  (if (<= number 1) 1 (* number (factorial(- number 1)))) 
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; -main is a 'driver' for the factorial() function.
+;;; Input: n
+;;; Output: n!
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn -main []
+ (println "To calculate the factorial of an integer")
+ (print " enter the integer: ") (flush)
+ (let
+    [ n (int (read))] 
+    (println)
+    (print "The factorial of " n " is " (factorial n)"\n")
+ )
+)
+
+]0;jw63@gold22: ~/214/projects/04/clojure[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/clojure[00m$ cat src/factorial.cljscript script.clojurecat src/factorial.clj[1Plojure -m factorial[4Pmv script.ada ..clojure -m factorial
+To calculate the factorial of an integer
+ enter the integer: 2
+
+The factorial of  2  is  2 
+]0;jw63@gold22: ~/214/projects/04/clojure[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/clojure[00m$ clojure -m factorial
+To calculate the factorial of an integer
+ enter the integer: 3
+
+The factorial of  3  is  6 
+]0;jw63@gold22: ~/214/projects/04/clojure[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/clojure[00m$ clojure -m factorial
+To calculate the factorial of an integer
+ enter the integer: 4
+
+The factorial of  4  is  24 
+]0;jw63@gold22: ~/214/projects/04/clojure[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/clojure[00m$ clojure -m factorial
+To calculate the factorial of an integer
+ enter the integer: 5
+
+The factorial of  5  is  120 
+]0;jw63@gold22: ~/214/projects/04/clojure[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/clojure[00m$ clojure -m factorial
+To calculate the factorial of an integer
+ enter the integer: 6
+
+The factorial of  6  is  720 
+]0;jw63@gold22: ~/214/projects/04/clojure[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/clojure[00m$ exit
+
+Script done on 2020-03-03 14:53:35-0500
+Script started on 2020-03-02 15:23:47-0500
+]0;jw63@maroon12: ~/214/projects/04/java[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/java[00m$ cat java    Factorial.java
+/* Factorial.java displays a table of logarithms.
+ *
+ * Input: n, a real number
+ * Output: the value of n!
+ * Author: Jonathan Winkle
+ * March 2, 2020
+ ********************************************************/
+import java.util.Scanner; 		// Get input
+
+class Factorial{
+
+    public static void main(String[] args){
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("To compute n!, enter n: ");
+        double n;
+        n = keyboard.nextDouble();
+        double result = factorial(n);
+        System.out.println("The factorial of "+ n +" is "+ result);
+
+    }
+   /***************************************************************
+    * factorial() calculates the factorial of its operand.
+    *
+    * Receive: n, a real number
+    * Return: the value of n factorial.
+    */
+
+    public static double factorial(double n)
+    {
+        double fact = n;
+        for (double i=n; i>1; i--){
+            fact *= i-1;
+        }
+        return fact;
+    }
+  }]0;jw63@maroon12: ~/214/projects/04/java[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/java[00m$ cat Factorial.java[4Pjava Factorialc Factorial.java
+]0;jw63@maroon12: ~/214/projects/04/java[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/java[00m$ javac Factorial.java[2Pcat Factorial.java[2@javac Factorial.java[2Pcat Factorial.java[4Pjava Factorial
+To compute n!, enter n: 
+1
+The factorial of 1.0 is 1.0
+]0;jw63@maroon12: ~/214/projects/04/java[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/java[00m$ java Factorial
+To compute n!, enter n: 
+2
+The factorial of 2.0 is 2.0
+]0;jw63@maroon12: ~/214/projects/04/java[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/java[00m$ java Factorial
+To compute n!, enter n: 
+3
+The factorial of 3.0 is 6.0
+]0;jw63@maroon12: ~/214/projects/04/java[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/java[00m$ java Factorial
+To compute n!, enter n: 
+4
+The factorial of 4.0 is 24.0
+]0;jw63@maroon12: ~/214/projects/04/java[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/java[00m$ java Factorial
+To compute n!, enter n: 
+5
+The factorial of 5.0 is 120.0
+]0;jw63@maroon12: ~/214/projects/04/java[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/java[00m$ java Factorial
+To compute n!, enter n: 
+6
+The factorial of 6.0 is 720.0
+]0;jw63@maroon12: ~/214/projects/04/java[01;32mjw63@maroon12[00m:[01;34m~/214/projects/04/java[00m$ exit
+
+Script done on 2020-03-02 15:24:28-0500
+Script started on 2020-03-03 15:11:09-0500
+]0;jw63@gold22: ~/214/projects/04/ruby[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/ruby[00m$ cat rf  factorial.rb
+#! /usr/bin/ruby
+# factorial.rb calculates the factorial value of integers
+#
+# Author: Jonathan Winkle
+# 3/3/2020
+#
+# Input:  an integer n
+# Output: the value of n!
+
+
+if __FILE__ == $0
+    print "Enter a value to calculate its factorial: "
+    n = gets.chomp.to_i
+    count = n
+    mult = n-1
+
+    for i in 1...count
+        n *= mult
+        mult -= 1
+    end
+
+    puts "The factorial of #{count} is #{n}"
+ end
+ 
+ ]0;jw63@gold22: ~/214/projects/04/ruby[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/ruby[00m$ cat factorial.rb[1@ruby factorial.rb
+Enter a value to calculate its factorial: 2
+The factorial of 2 is 2
+]0;jw63@gold22: ~/214/projects/04/ruby[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/ruby[00m$ ruby factorial.rb
+Enter a value to calculate its factorial: 3
+The factorial of 3 is 6
+]0;jw63@gold22: ~/214/projects/04/ruby[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/ruby[00m$ ruby factorial.rb
+Enter a value to calculate its factorial: 4
+The factorial of 4 is 24
+]0;jw63@gold22: ~/214/projects/04/ruby[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/ruby[00m$ ruby factorial.rb
+Enter a value to calculate its factorial: 5
+The factorial of 5 is 120
+]0;jw63@gold22: ~/214/projects/04/ruby[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/ruby[00m$ ruby factorial.rb
+Enter a value to calculate its factorial: 6
+The factorial of 6 is 720
+]0;jw63@gold22: ~/214/projects/04/ruby[01;32mjw63@gold22[00m:[01;34m~/214/projects/04/ruby[00m$ exit
+
+Script done on 2020-03-03 15:11:39-0500
